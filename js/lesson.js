@@ -18,22 +18,33 @@ fetch('data/lessons.json')
       const div = document.createElement('div');
       div.className = 'line';
       
+      // Разбиваем текст на слова
       const zhWords = line.zh.trim().split(/\s+/);
       const pinyinWords = line.pinyin.trim().split(/\s+/);
 
       let wordsHtml = '';
-      zhWords.forEach((word, i) => {
-        const py = pinyinWords[i] || ''; 
-        wordsHtml += `<span class="word" onclick="this.classList.toggle('show-pinyin')" data-pinyin="${py}">${word}</span>`;
+      let pyIndex = 0; // Индекс для пиньиня
+
+      zhWords.forEach((word) => {
+        // Если слово состоит только из знаков препинания, просто выводим его
+        if (/^[！？。，、；：！？]$/.test(word)) {
+          wordsHtml += `<span class="word" style="cursor:default; border-bottom:none;">${word}</span>`;
+        } else {
+          // Берем пиньинь, который соответствует этому слову
+          const py = pinyinWords[pyIndex] || ''; 
+          wordsHtml += `<span class="word" onclick="this.classList.toggle('show-pinyin')" data-pinyin="${py}">${word}</span>`;
+          pyIndex++; // Сдвигаем индекс пиньиня только для реальных слов
+        }
       });
 
       div.innerHTML = `
         <div class="zh-text"><span class="speaker">${line.speaker}:</span>${wordsHtml}</div>
-        <div class="translation">${line.ru}</div>`;
+        <div class="translation hidden">${line.ru}</div>`;
       
       dialogue.appendChild(div);
     });
 
+    // Кнопка перевода (теперь работает как надо)
     const transBtn = document.getElementById('toggleTranslation');
     if(transBtn) {
         transBtn.onclick = () => {
@@ -43,6 +54,7 @@ fetch('data/lessons.json')
         };
     }
 
+    // Навигация
     const nav = document.getElementById('nav');
     if (idx > 0) {
       nav.innerHTML += `<a href="lesson.html?id=${data.lessons[idx-1].id}">← Урок ${data.lessons[idx-1].num}</a>`;
