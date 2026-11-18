@@ -19,7 +19,8 @@
       "titleRu": "Из какой ты страны",
       "lines": [
         { "speaker": "A", "zh": "你 是 哪 国 人 ？", "pinyin": "Nǐ shì nǎ guó rén ?", "ru": "Из какой ты страны?" },
-        { "speaker": "B", "zh": "我 是 俄罗斯 人 。 你 呢 ？", "pinyin": "Wǒ shì Éluósī rén . Nǐ ne ?", "ru": "Я из России. А ты?" }
+        { "speaker": "B", "zh": "我 是 俄罗斯 人 。 你 呢 ？", "pinyin": "Wǒ shì Éluósī rén . Nǐ ne ?", "ru": "Я из России. А ты?" },
+        { "speaker": "A", "zh": "我 是 中国 人 。", "pinyin": "Wǒ shì Zhōngguó rén .", "ru": "Я из Китая." }
       ]
     }
   ]
