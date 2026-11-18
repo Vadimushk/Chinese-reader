@@ -43,9 +43,6 @@ fetch('data/lessons.json')
         };
     }
 
-    const pinyinBtn = document.getElementById('togglePinyin');
-    if (pinyinBtn) pinyinBtn.style.display = 'none';
-
     const nav = document.getElementById('nav');
     if (idx > 0) {
       nav.innerHTML += `<a href="lesson.html?id=${data.lessons[idx-1].id}">← Урок ${data.lessons[idx-1].num}</a>`;
