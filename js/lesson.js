@@ -5,15 +5,16 @@ fetch('data/lessons.json')
   .then(r => r.json())
   .then(data => {
     const idx = data.lessons.findIndex(l => l.id === lessonId);
-    if (idx === -1) return;
-    
+    if (idx === -1) return; 
     const lesson = data.lessons[idx];
+
     document.getElementById('lessonTitle').textContent = lesson.titleZh;
-    document.getElementById('lessonSub').textContent = 'Урок ' + lesson.num + ' — ' + lesson.titleRu;
+    document.getElementById('lessonSub').textContent = `Урок ${lesson.num} — ${lesson.titleRu}`;
+    document.title = `Урок ${lesson.num}: ${lesson.titleZh}`;
 
     const dialogue = document.getElementById('dialogue');
     
-    lesson.lines.forEach(function(line) {
+    lesson.lines.forEach(line => {
       const div = document.createElement('div');
       div.className = 'line';
       
@@ -21,33 +22,36 @@ fetch('data/lessons.json')
       const pinyinWords = line.pinyin.trim().split(/\s+/);
 
       let wordsHtml = '';
-      zhWords.forEach(function(word, i) {
+      zhWords.forEach((word, i) => {
         const py = pinyinWords[i] || ''; 
-        wordsHtml += '<span class="word" onclick="this.classList.toggle(\'show-pinyin\')" data-pinyin="' + py + '">' + word + '</span>';
+        wordsHtml += `<span class="word" onclick="this.classList.toggle('show-pinyin')" data-pinyin="${py}">${word}</span>`;
       });
 
-      div.innerHTML = '<div class="zh-text"><span class="speaker">' + line.speaker + ':</span>' + wordsHtml + '</div>' +
-                      '<div class="translation">' + line.ru + '</div>';
+      div.innerHTML = `
+        <div class="zh-text"><span class="speaker">${line.speaker}:</span>${wordsHtml}</div>
+        <div class="translation">${line.ru}</div>`;
       
       dialogue.appendChild(div);
     });
 
     const transBtn = document.getElementById('toggleTranslation');
-    if (transBtn) {
-      transBtn.onclick = function() {
-        transBtn.classList.toggle('active');
-        document.querySelectorAll('.translation').forEach(function(el) {
-          el.classList.toggle('hidden', !transBtn.classList.contains('active'));
-        });
-      };
+    if(transBtn) {
+        transBtn.onclick = () => {
+          transBtn.classList.toggle('active');
+          document.querySelectorAll('.translation').forEach(el =>
+            el.classList.toggle('hidden', !transBtn.classList.contains('active')));
+        };
     }
+
+    const pinyinBtn = document.getElementById('togglePinyin');
+    if (pinyinBtn) pinyinBtn.style.display = 'none';
 
     const nav = document.getElementById('nav');
     if (idx > 0) {
-      nav.innerHTML += '<a href="lesson.html?id=' + data.lessons[idx-1].id + '">← Урок ' + data.lessons[idx-1].num + '</a>';
+      nav.innerHTML += `<a href="lesson.html?id=${data.lessons[idx-1].id}">← Урок ${data.lessons[idx-1].num}</a>`;
     }
     if (idx < data.lessons.length - 1) {
-      nav.innerHTML += '<a href="lesson.html?id=' + data.lessons[idx+1].id + '">Урок ' + data.lessons[idx+1].num + ' →</a>';
+      nav.innerHTML += `<a href="lesson.html?id=${data.lessons[idx+1].id}">Урок ${data.lessons[idx+1].num} →</a>`;
     }
   })
-  .catch(error => console.error("Ошибка загрузки урока:", error));
+  .catch(error => console.error("Ошибка:", error));
