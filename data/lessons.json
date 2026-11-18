@@ -1,5 +1,5 @@
 {
-  "book": "Developing Chinese",
+  "book": "Developing Chinese — Elementary Speaking Course I",
   "lessons": [
     {
       "id": "lesson-01",
@@ -8,7 +8,8 @@
       "titleRu": "Привет",
       "lines": [
         { "speaker": "A", "zh": "你好 ！", "pinyin": "Nǐ hǎo !", "ru": "Привет!" },
-        { "speaker": "B", "zh": "你好 ！ 我 叫 大卫 。", "pinyin": "Nǐ hǎo ! Wǒ jiào Dàwèi .", "ru": "Привет! Меня зовут Давид." }
+        { "speaker": "B", "zh": "你好 ！ 我 叫 大卫 。 你 叫 什么 名字 ？", "pinyin": "Nǐ hǎo ! Wǒ jiào Dàwèi . Nǐ jiào shénme míngzi ?", "ru": "Привет! Меня зовут Давид. Как тебя зовут?" },
+        { "speaker": "A", "zh": "我 叫 玛丽 。 很 高兴 认识 你 。", "pinyin": "Wǒ jiào Mǎlì . Hěn gāoxìng rènshi nǐ .", "ru": "Меня зовут Мэри. Очень приятно познакомиться." }
       ]
     },
     {
@@ -18,7 +19,7 @@
       "titleRu": "Из какой ты страны",
       "lines": [
         { "speaker": "A", "zh": "你 是 哪 国 人 ？", "pinyin": "Nǐ shì nǎ guó rén ?", "ru": "Из какой ты страны?" },
-        { "speaker": "B", "zh": "我 是 俄罗斯 人 。", "pinyin": "Wǒ shì Éluósī rén .", "ru": "Я из России." }
+        { "speaker": "B", "zh": "我 是 俄罗斯 人 。 你 呢 ？", "pinyin": "Wǒ shì Éluósī rén . Nǐ ne ?", "ru": "Я из России. А ты?" }
       ]
     }
   ]
