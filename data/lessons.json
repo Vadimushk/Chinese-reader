@@ -1,28 +1,20 @@
 {
-  "book": "Developing Chinese — Elementary Speaking Course I",
-  "lessons": [
-    {
-      "id": "lesson-01",
-      "num": 1,
-      "titleZh": "你好",
-      "titleRu": "Привет",
-      "lines": [
-        { "speaker": "A", "zh": "你好！", "pinyin": "Nǐ hǎo!", "ru": "Привет!" },
-        { "speaker": "B", "zh": "你好！我叫大卫。你叫什么名字？", "pinyin": "Nǐ hǎo! Wǒ jiào Dàwèi. Nǐ jiào shénme míngzi?", "ru": "Привет! Меня зовут Давид. Как тебя зовут?" },
-        { "speaker": "A", "zh": "我叫玛丽。很高兴认识你。", "pinyin": "Wǒ jiào Mǎlì. Hěn gāoxìng rènshi nǐ.", "ru": "Меня зовут Мэри. Очень приятно познакомиться." },
-        { "speaker": "B", "zh": "我也很高兴认识你。", "pinyin": "Wǒ yě hěn gāoxìng rènshi nǐ.", "ru": "Мне тоже очень приятно." }
-      ]
+  "id": "lesson-01",
+  "num": 1,
+  "titleZh": "你好",
+  "titleRu": "Привет",
+  "lines": [
+    { 
+      "speaker": "A", 
+      "zh": "你好 ！", 
+      "pinyin": "Nǐ hǎo !", 
+      "ru": "Привет!" 
     },
-    {
-      "id": "lesson-02",
-      "num": 2,
-      "titleZh": "你是哪国人",
-      "titleRu": "Из какой ты страны",
-      "lines": [
-        { "speaker": "A", "zh": "你是哪国人？", "pinyin": "Nǐ shì nǎ guó rén?", "ru": "Из какой ты страны?" },
-        { "speaker": "B", "zh": "我是俄罗斯人。你呢？", "pinyin": "Wǒ shì Éluósī rén. Nǐ ne?", "ru": "Я из России. А ты?" },
-        { "speaker": "A", "zh": "我是中国人。", "pinyin": "Wǒ shì Zhōngguó rén.", "ru": "Я из Китая." }
-      ]
+    { 
+      "speaker": "B", 
+      "zh": "你好 ！ 我 叫 大卫 。 你 叫 什么 名字 ？", 
+      "pinyin": "Nǐ hǎo ! Wǒ jiào Dàwèi . Nǐ jiào shénme míngzi ?", 
+      "ru": "Привет! Меня зовут Давид. Как тебя зовут?" 
     }
   ]
 }
