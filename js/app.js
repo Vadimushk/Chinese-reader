@@ -1,4 +1,3 @@
-// Загружаем данные и строим список уроков
 fetch('data/lessons.json')
   .then(r => r.json())
   .then(data => {
@@ -13,4 +12,5 @@ fetch('data/lessons.json')
         </a>`;
       list.appendChild(li);
     });
-  });
+  })
+  .catch(error => console.error("Ошибка:", error));
