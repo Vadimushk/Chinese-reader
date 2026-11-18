@@ -18,22 +18,25 @@ fetch('data/lessons.json')
       const div = document.createElement('div');
       div.className = 'line';
       
-      // Разбиваем текст на слова
-      const zhWords = line.zh.trim().split(/\s+/);
-      const pinyinWords = line.pinyin.trim().split(/\s+/);
+      // УМНАЯ РАЗБИВКА: отделяем китайские иероглифы от пунктуации
+      const zhClean = line.zh.replace(/([！？。，、；：])/g, ' $1 ');
+      const pyClean = line.pinyin.replace(/([!?.,;:])/g, ' $1 ');
+
+      const zhWords = zhClean.trim().split(/\s+/);
+      const pinyinWords = pyClean.trim().split(/\s+/);
 
       let wordsHtml = '';
-      let pyIndex = 0; // Индекс для пиньиня
+      let pyIndex = 0;
 
       zhWords.forEach((word) => {
-        // Если слово состоит только из знаков препинания, просто выводим его
-        if (/^[！？。，、；：！？]$/.test(word)) {
-          wordsHtml += `<span class="word" style="cursor:default; border-bottom:none;">${word}</span>`;
+        // Если слово — это знак препинания, просто выводим его без клика
+        if (/^[！？。，、；：]$/.test(word)) {
+          wordsHtml += `<span style="margin-right: 2px;">${word}</span>`;
         } else {
-          // Берем пиньинь, который соответствует этому слову
+          // Берем пиньинь по порядку
           const py = pinyinWords[pyIndex] || ''; 
           wordsHtml += `<span class="word" onclick="this.classList.toggle('show-pinyin')" data-pinyin="${py}">${word}</span>`;
-          pyIndex++; // Сдвигаем индекс пиньиня только для реальных слов
+          pyIndex++;
         }
       });
 
@@ -44,7 +47,6 @@ fetch('data/lessons.json')
       dialogue.appendChild(div);
     });
 
-    // Кнопка перевода (теперь работает как надо)
     const transBtn = document.getElementById('toggleTranslation');
     if(transBtn) {
         transBtn.onclick = () => {
@@ -54,7 +56,6 @@ fetch('data/lessons.json')
         };
     }
 
-    // Навигация
     const nav = document.getElementById('nav');
     if (idx > 0) {
       nav.innerHTML += `<a href="lesson.html?id=${data.lessons[idx-1].id}">← Урок ${data.lessons[idx-1].num}</a>`;
