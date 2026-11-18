@@ -1,20 +1,135 @@
-/* Стили для интерактивных слов */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f7f7f5;
+  color: #222;
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+header {
+  text-align: center;
+  padding: 30px 0 20px;
+  border-bottom: 2px solid #e0e0d8;
+  margin-bottom: 30px;
+}
+
+header h1 { font-size: 1.8em; font-weight: 600; }
+header p { color: #888; font-size: 0.95em; margin-top: 6px; }
+
+/* Список уроков */
+.lesson-list { list-style: none; }
+
+.lesson-list li { margin-bottom: 12px; }
+
+.lesson-list a {
+  display: block;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #222;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.lesson-list a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.lesson-list .num { color: #c0392b; font-weight: 600; margin-right: 8px; }
+.lesson-list .zh { font-size: 1.1em; }
+.lesson-list .ru { display: block; color: #888; font-size: 0.85em; margin-top: 2px; }
+
+/* Страница урока */
+.lesson-header { margin-bottom: 24px; }
+.lesson-header h2 { font-size: 1.4em; margin-bottom: 4px; }
+.lesson-header .sub { color: #888; font-size: 0.9em; }
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background 0.15s;
+}
+
+.controls button:hover { background: #f0f0ea; }
+.controls button.active { background: #c0392b; color: #fff; border-color: #c0392b; }
+
+/* Блок диалога */
+.dialogue { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+
+.line { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #f0f0ea; }
+.line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.speaker { font-weight: 600; color: #c0392b; margin-right: 6px; }
+
+.zh-text { font-size: 1.25em; letter-spacing: 0.02em; }
+
+.translation {
+  color: #95a5a6;
+  font-size: 0.92em;
+  margin-top: 8px;
+}
+
+.hidden { display: none; }
+
+/* Навигация между уроками */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 12px;
+}
+
+.nav a {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  background: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #222;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-size: 0.9em;
+}
+
+.nav a:hover { background: #f0f0ea; }
+
+/* =========================================
+   НОВЫЕ СТИЛИ ДЛЯ ПИНЬИНЯ ПО КЛИКУ
+   ========================================= */
+
 .word {
   cursor: pointer;
   position: relative;
   display: inline-block;
   margin-right: 2px;
   border-bottom: 1px dashed transparent;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-/* Легкая подсветка при наведении/нажатии */
+/* Подсветка слова при наведении/нажатии */
 .word:hover, .word.show-pinyin {
   border-bottom-color: #c0392b;
   color: #c0392b;
 }
 
-/* Появление пиньиня над словом */
+/* Всплывающая подсказка с пиньинем */
 .word.show-pinyin::before {
   content: attr(data-pinyin);
   position: absolute;
@@ -23,14 +138,35 @@
   transform: translateX(-50%);
   background: #333;
   color: #fff;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
   font-size: 0.75em;
   white-space: nowrap;
   font-family: Arial, sans-serif;
   font-style: normal;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   pointer-events: none;
   z-index: 10;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* Маленькая стрелочка снизу подсказки */
+.word.show-pinyin::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+  pointer-events: none;
+  z-index: 10;
+  margin-bottom: -4px; 
+}
+
+@media (max-width: 500px) {
+  body { padding: 12px; }
+  .dialogue { padding: 16px; }
+  .zh-text { font-size: 1.15em; }
 }
