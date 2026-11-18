@@ -4,6 +4,7 @@ fetch('data/lessons.json')
     const list = document.getElementById('lessonList');
     data.lessons.forEach(lesson => {
       const li = document.createElement('li');
+      // ВНИМАНИЕ: Здесь должна быть ссылка на lesson.html (страницу), а не на lesson.js (скрипт)
       li.innerHTML = `
         <a href="lesson.html?id=${lesson.id}">
           <span class="num">Урок ${lesson.num}</span>
